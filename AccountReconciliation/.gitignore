@@ -1,0 +1,25 @@
+# Ignorar la carpeta de dependencias
+node_modules/
+
+# Ignorar archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar archivos del sistema operativo (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración de IDEs y editores de texto
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar el archivo package-lock.json (si no se desea versionar)
+package-lock.json
+
+# Ignorar archivos temporales y de cache
+*.log
+*.tmp
+*.bak

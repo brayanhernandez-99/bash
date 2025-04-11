@@ -1,0 +1,24 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  vars:
+    HOME_USER: "/home/rundeckuser"
+    ACCOUNT_DIR: "/opt/rundeck_files/Account_Reconciliation"
+
+  tasks:
+    - name: Obteniendo listado usuarios sudoers
+      shell: grep -ve "^#" -ve "^$" -ve "%" /etc/sudoers | grep "ALL=" >> "{{ HOME_USER }}/account_reconciliation-{{ inventory_hostname }}.csv"
+
+    - name: Obteniendo listado usuarios sudoers.d
+      shell: cat /etc/sudoers.d/* | grep -ve "^#" -ve "^$" -ve "%" >> "{{ HOME_USER }}/account_reconciliation-{{ inventory_hostname }}.csv"
+
+    - name: Copiando listado usuarios
+      fetch:
+        src: "{{ HOME_USER }}/account_reconciliation-{{ inventory_hostname }}.csv"
+        dest: "{{ ACCOUNT_DIR }}/"
+        flat: yes
+
+    - name: Borrando listado usuarios
+      file:
+        path: "{{ HOME_USER }}/account_reconciliation-{{ inventory_hostname }}.csv"
+        state: absent

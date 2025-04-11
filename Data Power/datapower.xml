@@ -1,0 +1,87 @@
+
+
+
+#CPUUsage
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request domain="BDV_MOVIL" xmlns:dp="http://www.datapower.com/schemas/management"> <dp:get-status class="CPUUsage"/> </dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+
+#DomainCheckpointStatus
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request xmlns:dp="http://www.datapower.com/schemas/management" domain="BDV_MOVIL"><dp:get-status class="DomainCheckpointStatus"/></dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+
+#RemoveCheckpoint
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request xmlns:dp="http://www.datapower.com/schemas/management" domain="BDV_MOVIL"><dp:do-action> <RemoveCheckpoint> <ChkName>Electricflow_20230714-114309</ChkName> </RemoveCheckpoint> </dp:do-action></dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+
+#SaveCheckpoint
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request xmlns:dp="http://www.datapower.com/schemas/management" domain="BDV_MOVIL"><dp:do-action> <SaveCheckpoint> <ChkName>Electricflow_20230724-152614</ChkName> </SaveCheckpoint> </dp:do-action></dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+
+#SaveConfig
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request xmlns:dp="http://www.datapower.com/schemas/management" domain="BDV_MOVIL"><dp:do-action> <SaveConfig></SaveConfig> </dp:do-action></dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+
+#RestartDomain
+#credential datapowers user
+userName=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value userName)
+password=$(ectool getFullCredential "/projects/Utilities/credentials/DataPowerCredentialInt" --value password)
+
+#para ver mas al ejecutar el curl -v --trace-ascii /dev/stdout)
+response=$(curl --insecure --data-binary '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> <env:Body> <dp:request xmlns:dp="http://www.datapower.com/schemas/management" domain="BDV_MOVIL"><dp:do-action> <RestartDomain> <Domain>BDV_MOVIL</Domain> </RestartDomain> </dp:do-action></dp:request> </env:Body> </env:Envelope>' -u $userName:$password https://192.168.113.21:5550/service/mgmt/current)
+
+echo -e "Response Data Power: \n$response"
+
+
+
+
+

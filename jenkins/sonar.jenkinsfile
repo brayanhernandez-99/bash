@@ -1,0 +1,37 @@
+#!/usr/bin/env groovy
+//Link: https://www.jenkins.io/doc/book/pipeline/syntax/#agent
+
+pipeline {
+	agent {
+    	node {
+        	label "${NODE}"
+        	customWorkspace "${WORKSPACE}"
+    	}
+	}
+	tools {
+	    maven 'MAVEN 3.6.x'
+	    jdk 'OpenJDK 11 - Red Hat'
+	}
+	
+	stages{
+	 	stage ("Initialize") {
+            steps {
+            	sh '''
+					echo "PATH = ${PATH}"
+		            echo "M2_HOME = ${M2_HOME}"
+		            echo "WORKSPACE = ${WORKSPACE}"
+		            mvn -version
+	            '''
+			}
+        }
+        stage ("SonarQube") {
+            steps {
+	            withSonarQubeEnv('SonarQube'){
+	            	withMaven(maven: 'MAVEN 3.6.x') {
+	            		sh 'mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -Dsonar.qualitygate.wait=false'
+	            	}
+	            }
+            }
+        }
+	}
+}
